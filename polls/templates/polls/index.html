@@ -1,0 +1,25 @@
+{% extends "main_wrapper.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+
+<div class="row">
+  <div class="col-2">
+    <div style="position:fixed;"><a href="/polls/create/" style="color:808080"><h5>Create a new question</h5></a></div>
+  </div>
+
+  <div class="col-10" style="border-left:2px solid #808080;">
+  {% if question_list %}
+    {% for question in question_list %}
+      <a href="/polls/{{ question.id }}/"><h4>{{ question.question_text }}</h4></a>
+    <h7>Published: {{ question.pub_date|date:"Y-m-d в H:i:s" }}</h7><br>
+    <h7>Number of votes: {{ question.all_votes }}</h7>
+    <hr>
+    {% endfor %}
+  {% else %}
+    <p>No polls are available.</p>
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

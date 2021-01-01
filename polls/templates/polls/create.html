@@ -1,0 +1,26 @@
+{% extends "main_wrapper.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<form action="" method='post'>
+    {% csrf_token %}
+    <div align="center"><h3>Enter question text:</h3></div>
+    <div align="center"><input type="text" maxlength="300" name="question" class="form-control col-sm-3"></div>
+<br>
+    <div align="center"><h5>Enter text of choices:</h5></div>
+
+    <div align="center">
+        <div id="choice"><input type="text" maxlength="500" name="choice" class="form-control form-control-sm col-sm-3"><br></div>
+    </div>
+
+    <div align="center">
+    <input type="button" id="buttonAdd" value="Add choice" class="mt-2 btn btn-primary">
+    <input type="submit" value="Save" class="mt-2 btn btn-primary">
+    </div>
+
+</form>
+<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/btn.js' %}"></script>
+{% endblock %}

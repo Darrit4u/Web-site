@@ -1,0 +1,31 @@
+{% extends "main_wrapper.html" %}
+
+{% block content %}
+
+<div align="center"><h1>{{ question.question_text }}</h1></div>
+
+{% if error_message %}<p align="center" style="color:red"><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+
+    <div class="container" align="center" style="width:400px">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            </div>
+        </div>
+        <label for="choice{{ forloop.counter }}" class="form-control" ><div align="left">{{ choice.choice_text }}</div></label>
+        <br>
+    </div>
+    </div>
+{% endfor %}
+<br>
+<div align="center">
+<input class="btn btn-primary" type="submit" value="Vote">
+</div>
+</form>
+{% endblock %}

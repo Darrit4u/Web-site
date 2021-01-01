@@ -1,0 +1,19 @@
+{% extends "main_wrapper.html" %}
+
+{% block content %}
+<div class="container" align="center"><h1>{{ question.question_text }}</h1></div>
+
+<div class="container" align="center">
+    <div class="rounded" style="width:400px">
+    {% for choice in question.choice_set.all %}
+        <li class="list-group-item list-group-item-primary">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    {% endfor %}
+    </div>
+
+    <div class="container" align="center">
+        <br>
+        <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary">Vote again?</a>
+        <a href="{% url 'polls:index' %}" class="btn btn-primary">Return</a>
+    </div>
+</div>
+{% endblock %}

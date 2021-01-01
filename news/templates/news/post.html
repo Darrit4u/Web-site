@@ -1,0 +1,8 @@
+{% extends "main_wrapper.html" %}
+{% load static  %}
+
+{% block content %}
+  <div align="center"><h4 class="text-primary">{{articles.title}}</h4></div>
+  <div align="center"><h7 class="text-primary">Published: {{articles.date|date:"Y-m-d в H:i:s"}}</h7></div>
+  <div align="center" class="rounded" style="border:2px solid black; margin:20px"><p>{{articles.post|safe|linebreaks}}</p></div>
+{% endblock %}

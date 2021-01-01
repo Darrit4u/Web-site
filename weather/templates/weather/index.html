@@ -1,0 +1,50 @@
+{% extends "main_wrapper.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <h2>Weather in any city</h2><br>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    <input type="submit" name="send" value="GO" class="mt-2 btn btn-primary">
+                </form>
+
+            </div>
+            <div class="col-5 offset-2">
+                <h2>Information</h2><br>
+                {% if all_info %}
+
+                    {% for info in all_info %}
+                    <div class="alert alert-primary">
+                        <div class="row">
+                            <div class="col-8">
+                                <b>The city: </b> {{info.city}}<br>
+                                <b>Temperature: </b> {{info.temp}}<sup>o</sup>
+                            </div>
+                            <div class="offset-1">
+                                <img src="https://openweathermap.org/img/w/{{info.icon}}.png" alt="Photo of weather" class="img-thumbnail">
+                            </div>
+                            <div>
+                                <sup>
+                                    <a href="delete/{{info.city}}" style="background:#ff4040;color:black;" class="img-thumbnail">x</a>
+                                </sup>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% else %}
+                    <div class="alert alert-primary">
+                        <div class="row">
+                            <div class="col-8">
+                                <b>You haven't entered any city </b>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
